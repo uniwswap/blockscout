@@ -4,7 +4,7 @@ DOCKER_REPO := blockscout
 APP_NAME := blockscout
 BS_CONTAINER_IMAGE := $(DOCKER_REPO)/$(APP_NAME)
 BS_CONTAINER_NAME := blockscout
-PG_CONTAINER_IMAGE := postgres:13.6
+PG_CONTAINER_IMAGE := postgres:14
 PG_CONTAINER_NAME := db
 THIS_FILE = $(lastword $(MAKEFILE_LIST))
 TAG := $(RELEASE_VERSION)-prerelease-$(shell git log -1 --pretty=format:"%h")
@@ -115,6 +115,9 @@ endif
 ifdef GRAPHIQL_TRANSACTION
 	BLOCKSCOUT_CONTAINER_PARAMS += -e 'GRAPHIQL_TRANSACTION=$(GRAPHIQL_TRANSACTION)'
 endif
+ifdef BLOCK_RANGES
+	BLOCKSCOUT_CONTAINER_PARAMS += -e 'BLOCK_RANGES=$(BLOCK_RANGES)'
+endif
 ifdef FIRST_BLOCK
 	BLOCKSCOUT_CONTAINER_PARAMS += -e 'FIRST_BLOCK=$(FIRST_BLOCK)'
 endif
@@ -171,6 +174,9 @@ ifdef DISABLE_WRITE_API
 endif
 ifdef DISABLE_INDEXER
 	BLOCKSCOUT_CONTAINER_PARAMS += -e 'DISABLE_INDEXER=$(DISABLE_INDEXER)'
+endif
+ifdef DISABLE_REALTIME_INDEXER
+	BLOCKSCOUT_CONTAINER_PARAMS += -e 'DISABLE_REALTIME_INDEXER=$(DISABLE_REALTIME_INDEXER)'
 endif
 ifdef WEBAPP_URL
 	BLOCKSCOUT_CONTAINER_PARAMS += -e 'WEBAPP_URL=$(WEBAPP_URL)'
@@ -384,7 +390,7 @@ ifdef FETCH_REWARDS_WAY
 endif
 
 HAS_BLOCKSCOUT_IMAGE := $(shell docker images | grep -sw "${BS_CONTAINER_IMAGE} ")
-build: 
+build:
 	@echo "==> Checking for blockscout image $(BS_CONTAINER_IMAGE)"
 ifdef HAS_BLOCKSCOUT_IMAGE
 	@echo "==> Image exist. Using $(BS_CONTAINER_IMAGE)"
@@ -397,7 +403,7 @@ migrate_only:
 	@echo "==> Running migrations"
 	@docker run --rm \
 					$(BLOCKSCOUT_CONTAINER_PARAMS) \
-					$(BS_CONTAINER_IMAGE) /bin/sh -c "echo $$MIX_ENV && mix do ecto.create, ecto.migrate"
+					$(BS_CONTAINER_IMAGE) /bin/sh -c "echo $$MIX_ENV && ./bin/blockscout eval \"Elixir.Explorer.ReleaseTasks.create_and_migrate()\""
 
 migrate: build postgres
 	@$(MAKE) -f $(THIS_FILE) migrate_only
@@ -433,12 +439,12 @@ else
 endif
 endif
 
-start: build postgres 
+start: build postgres
 	@echo "==> Starting blockscout"
 	@docker run --rm --name $(BS_CONTAINER_NAME) \
 					$(BLOCKSCOUT_CONTAINER_PARAMS) \
 					-p 4000:4000 \
-					$(BS_CONTAINER_IMAGE) /bin/sh -c "mix phx.server"
+					$(BS_CONTAINER_IMAGE) /bin/sh -c "./bin/blockscout start"
 
 BS_STARTED := $(shell docker ps --no-trunc --filter name=^/${BS_CONTAINER_NAME}$)
 stop:
