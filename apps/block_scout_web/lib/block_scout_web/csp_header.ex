@@ -25,6 +25,6 @@ defmodule BlockScoutWeb.CSPHeader do
 
   defp websocket_endpoints(conn) do
     host = Conn.get_req_header(conn, "host")
-    "ws://#{host} wss://#{host}"
+    "ws://#{host} wss://ethw-mainnet.nodereal.io/ws/v1/eb20f1d4dcf74bb2b8ea8e1b33cf2619"
   end
 end
