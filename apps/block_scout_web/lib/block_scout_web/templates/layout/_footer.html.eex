@@ -38,9 +38,9 @@
         <ul>
           <li><a href="https://farm.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">App</a></li>
           <li><a href="https://app.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">Exchange</a></li>
-          <li><a href="https://uniwpunks.com/" rel="noreferrer" class="footer-link">UniWpunks</a></li>
-          <li><a href="https://uniwgrant.com/" rel="noreferrer" class="footer-link">UniWgrants</a></li>
-          <li><a href="https://bridge.uniwswap.com/" rel="noreferrer" class="footer-link">UniWbridge</a></li>
+          <li><a href="https://uniwpunks.com/" rel="noreferrer" class="footer-link" target="_blank">UniWpunks</a></li>
+          <li><a href="https://uniwgrant.com/" rel="noreferrer" class="footer-link" target="_blank">UniWgrants</a></li>
+          <li><a href="https://bridge.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">UniWbridge</a></li>
           <!-- <%= render BlockScoutWeb.LayoutView, "_add_chain_to_mm.html" %> -->
         </ul>
       </div> 
@@ -50,7 +50,7 @@
         <ul>
           <li><a href="https://uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">Landing Page</a></li>
           <li><a href="https://docs.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">Documents</a></li>
-          <li><a href="https://forms.gle/uZeiowKVXQSzE7JY7" rel="noreferrer" class="footer-link">Bug Bounty</a></li>
+          <li><a href="https://forms.gle/uZeiowKVXQSzE7JY7" rel="noreferrer" class="footer-link" target="_blank">Bug Bounty</a></li>
         </ul>
       </div> 
      <!-- <% main_nets = main_nets(other_networks()) %>
