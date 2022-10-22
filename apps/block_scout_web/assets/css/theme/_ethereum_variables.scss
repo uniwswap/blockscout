@@ -1,13 +1,13 @@
 // general
 $primary: #7181bb;
-$secondary: #49a2ee;
+$secondary: #ebaefa;
 $tertiary: #4ad7a7;
-$additional-font: #89cae6;
+$additional-font: #fff;
 
 // footer
 $footer-background-color: $primary;
 $footer-title-color: #fff;
-$footer-text-color: #89cae6;
+$footer-text-color: #fff;
 $footer-item-disc-color: $secondary;
 .footer-logo {
   filter: brightness(0) invert(1);
@@ -19,8 +19,8 @@ $footer-item-disc-color: $secondary;
 // dashboard
 $dashboard-line-color-price: $tertiary; // price left border
 
-$dashboard-banner-chart-legend-label-color: #89cae6;
-$dashboard-stats-item-label-color: #89cae6;
+$dashboard-banner-chart-legend-label-color: #fff;
+$dashboard-stats-item-label-color: #fff;
 $dashboard-banner-chart-legend-value-color: #fff; // chart labels
 $dashboard-stats-item-value-color: #fff; // stat values
 
