@@ -501,7 +501,6 @@ defmodule Explorer.Chain.InternalTransaction do
   # Validates that :call `type` changeset either has an `error` or both `gas_used` and `output`
   defp validate_call_error_or_result(changeset) do
     case get_field(changeset, :error) do
-      nil -> validate_required(changeset, @call_success_fields, message: "can't be blank for successful call")
       _ -> validate_disallowed(changeset, @call_success_fields, message: "can't be present for failed call")
     end
   end
