@@ -1,5 +1,5 @@
 defmodule Indexer.Fetcher.ENSNameTest do
-  use EthereumJSONRPC.Case, async: false
+  use EthereumJSONRPC.Case
   use Explorer.DataCase
 
   require Logger

@@ -1,7 +1,7 @@
 defmodule Indexer.Fetcher.EnsNameTest do
   require Logger
 
-  use EthereumJSONRPC.Case
+  use EthereumJSONRPC.Case, async: false
   use Explorer.DataCase
 
   import Mox
