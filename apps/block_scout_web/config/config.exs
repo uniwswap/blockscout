@@ -29,7 +29,26 @@ config :block_scout_web,
   ecto_repos: [Explorer.Repo, Explorer.Repo.Account]
 
 config :block_scout_web,
-  admin_panel_enabled: System.get_env("ADMIN_PANEL_ENABLED", "") == "true"
+  link_to_other_explorers: System.get_env("LINK_TO_OTHER_EXPLORERS") == "true",
+  other_explorers: System.get_env("OTHER_EXPLORERS"),
+  other_networks: System.get_env("SUPPORTED_CHAINS"),
+  webapp_url: System.get_env("WEBAPP_URL"),
+  api_url: System.get_env("API_URL"),
+  apps_menu: if(System.get_env("APPS_MENU", "false") == "true", do: true, else: false),
+  external_apps: System.get_env("EXTERNAL_APPS"),
+  gas_price: System.get_env("GAS_PRICE", nil),
+  restricted_list: System.get_env("RESTRICTED_LIST", nil),
+  restricted_list_key: System.get_env("RESTRICTED_LIST_KEY", nil),
+  dark_forest_addresses: System.get_env("CUSTOM_CONTRACT_ADDRESSES_DARK_FOREST"),
+  dark_forest_addresses_v_0_5: System.get_env("CUSTOM_CONTRACT_ADDRESSES_DARK_FOREST_V_0_5"),
+  circles_addresses: System.get_env("CUSTOM_CONTRACT_ADDRESSES_CIRCLES"),
+  test_tokens_addresses: System.get_env("CUSTOM_CONTRACT_ADDRESSES_TEST_TOKEN"),
+  max_size_to_show_array_as_is: Integer.parse(System.get_env("MAX_SIZE_UNLESS_HIDE_ARRAY", "50")),
+  max_length_to_show_string_without_trimming: System.get_env("MAX_STRING_LENGTH_WITHOUT_TRIMMING", "2040"),
+  re_captcha_secret_key: System.get_env("RE_CAPTCHA_SECRET_KEY", nil),
+  re_captcha_client_key: System.get_env("RE_CAPTCHA_CLIENT_KEY", nil),
+  admin_panel_enabled: System.get_env("ADMIN_PANEL_ENABLED", "") == "true",
+  ens_metadata_server: System.get_env("ENS_METADATA_SERVER", nil)
 
 config :block_scout_web, BlockScoutWeb.Counters.BlocksIndexedCounter, enabled: true
 
