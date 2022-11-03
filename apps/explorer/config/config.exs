@@ -134,28 +134,6 @@ config :spandex_ecto, SpandexEcto.EctoLogger,
   tracer: Explorer.Tracer,
   otp_app: :explorer
 
-config :explorer, Explorer.Chain.Cache.Blocks,
-  ttl_check_interval: if(disable_indexer == "true", do: :timer.seconds(1), else: false),
-  global_ttl: if(disable_indexer == "true", do: :timer.seconds(5))
-
-config :explorer, Explorer.Chain.Cache.Transactions,
-  ttl_check_interval: if(disable_indexer == "true", do: :timer.seconds(1), else: false),
-  global_ttl: if(disable_indexer == "true", do: :timer.seconds(5))
-
-config :explorer, Explorer.Chain.Cache.Accounts,
-  ttl_check_interval: if(disable_indexer == "true", do: :timer.seconds(1), else: false),
-  global_ttl: if(disable_indexer == "true", do: :timer.seconds(5))
-
-config :explorer, Explorer.Chain.Cache.Uncles,
-  ttl_check_interval: if(disable_indexer == "true", do: :timer.seconds(1), else: false),
-  global_ttl: if(disable_indexer == "true", do: :timer.seconds(5))
-
-config :explorer, Explorer.ThirdPartyIntegrations.Sourcify,
-  server_url: System.get_env("SOURCIFY_SERVER_URL") || "https://sourcify.dev/server",
-  enabled: System.get_env("ENABLE_SOURCIFY_INTEGRATION") == "true",
-  chain_id: System.get_env("CHAIN_ID"),
-  repo_url: System.get_env("SOURCIFY_REPO_URL") || "https://repo.sourcify.dev/contracts"
-
 config :explorer, Explorer.ENS.NameRetriever,
   enabled:
     System.get_env("ENABLE_ENS") == "true" &&
