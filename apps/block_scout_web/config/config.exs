@@ -29,7 +29,7 @@ config :block_scout_web,
   ecto_repos: [Explorer.Repo, Explorer.Repo.Account]
 
 config :block_scout_web,
-  admin_panel_enabled: System.get_env("ADMIN_PANEL_ENABLED", "") == "true"
+  admin_panel_enabled: System.get_env("ADMIN_PANEL_ENABLED", "") == "true",
   ens_metadata_server: System.get_env("ENS_METADATA_SERVER", nil)
 
 config :block_scout_web, BlockScoutWeb.Counters.BlocksIndexedCounter, enabled: true
