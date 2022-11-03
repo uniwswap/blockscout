@@ -78,6 +78,8 @@ defmodule EthereumJSONRPC.WebSocket.WebSocketClient do
         server_name_indication: host_charlist,
         verify_fun: {&:ssl_verify_hostname.verify_fun/3, [check_hostname: host_charlist]}
       ]
+      # ssl_verify: :verify_none,
+      # keepalive: keepalive
     )
   end
 

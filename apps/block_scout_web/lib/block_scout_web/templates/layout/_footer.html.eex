@@ -18,16 +18,98 @@
     <% col_size = if Enum.empty?(other_explorers), do: 3, else: 2 %>
 
     <div class="row">
-      <div class="col-xs-12 col-lg-4">
-        <p class="footer-info-text"><%= gettext("Polygon Edge enables you to run your own blockchain network with customizable features. It is guided by the principles of modular architecture and provides Ethereum compatibility to your network.") %></p>
+      <div class="col-xs-12 col-lg-3">
+        <!-- <p class="footer-info-text"><%= gettext("UNIW") %></p> -->
         <div class="footer-social-icons">
-          <a href="https://github.com/0xPolygon/polygon-edge" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Github") %>'>
+          <a href="https://github.com/uniwswap" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Github") %>'>
             <div class="footer-social-icon-container fontawesome-icon github"></div>
           </a>
-          <a href="https://twitter.com/0xPolygonEdge" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Twitter") %>'>
+          <a href="https://twitter.com/uniwswap" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Twitter") %>'>
             <div class="footer-social-icon-container fontawesome-icon twitter"></div>
+          </a>
+          <a href="https://t.me/uniwswap" rel="noreferrer" target="_blank" class="footer-social-icon" title='<%= gettext("Telegram") %>'>
+            <div class="footer-social-icon-container fontawesome-icon telegram"></div>
           </a>
         </div>
       </div>
+
+       <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+        <h3>Products</h3>
+        <ul>
+          
+          <li><a href="https://app.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">Exchange</a></li>
+          <li><a href="https://uniwpunks.com/" rel="noreferrer" class="footer-link" target="_blank">UniWpunks</a></li>
+          <li><a href="https://uniwgrant.com/" rel="noreferrer" class="footer-link" target="_blank">UniWgrants</a></li>
+          <li><a href="https://bridge.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">UniWbridge</a></li>
+          <!-- <%= render BlockScoutWeb.LayoutView, "_add_chain_to_mm.html" %> -->
+        </ul>
+      </div> 
+
+      <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+        <h3>Earn</h3>
+        <ul>
+          <li><a href="https://farm.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">Lp Farm</a></li>
+          <li><a href="https://farm.uniwswap.com/stakingPool" rel="noreferrer" class="footer-link" target="_blank">Staking Pool</a></li>
+          <li><a href="https://farm.uniwswap.com/launchpad" rel="noreferrer" class="footer-link" target="_blank">IDO</a></li>
+          <li><a href="https://farm.uniwswap.com/kingpage" rel="noreferrer" class="footer-link" target="_blank">Mini Games</a></li>
+        </ul>
+      </div> 
+
+      <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+        <h3>About</h3>
+        <ul>
+          <li><a href="https://uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">Who we are</a></li>
+          <li><a href="https://docs.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">Documents</a></li>
+          <li><a href="https://forms.gle/uZeiowKVXQSzE7JY7" rel="noreferrer" class="footer-link" target="_blank">Bug Bounty</a></li>
+          <li><a href="mailto:info@uniwswap.com" rel="noreferrer" class="footer-link" target="_blank">Promote with us</a></li>
+        </ul>
+      </div> 
+     <!-- <% main_nets = main_nets(other_networks()) %>
+
+      <%= unless Enum.empty?(main_nets) do %>
+        <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+          <h3><%= gettext("Main Networks") %></h3>
+          <ul>
+            <%= for %{title: title, url: url} <- main_nets do %>
+              <li><a href="<%= url %>" rel="norefferer" class="footer-link"> <%= title %> </a></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <% test_nets = test_nets(other_networks()) %>
+
+      <%= unless Enum.empty?(test_nets) do %>
+        <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+          <h3><%= gettext("Test Networks") %></h3>
+          <ul>
+            <%= for %{title: title, url: url} <- test_nets do %>
+              <li><a href="<%= url %>" rel="noreferrer" class="footer-link"> <%= title %> </a></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      --> 
+
+      <%= unless Enum.empty?(other_explorers) do %>
+        <div class="col-xs-12 col-md-4 col-lg-<%= col_size %> footer-list">
+          <h3><%= gettext("Other Explorers") %></h3>
+          <ul>
+            <%= for {name, url} <- other_explorers do %>
+              <li><a href="<%= url %>" rel="noreferrer" class="footer-link"> <%= name %> </a></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+
+   <!--  <% version = version() %> --> 
+
+    <%= unless ignore_version?(version) do %>
+      <% release_link = release_link(version) %>
+      <div>
+        <%= gettext("Version") %>: <%= release_link %>
+      </div>
+    <% end %>
   </div>
 </footer>
