@@ -450,6 +450,10 @@ defmodule BlockScoutWeb.AddressView do
 
   def smart_contract_is_gnosis_safe_proxy?(_address), do: false
 
+  def ens_avatar_url(address) do
+    "#{Application.get_env(:block_scout_web, :ens_metadata_server)}/avatar/#{primary_name(address)}"
+  end
+
   def tag_name_to_label(tag_name) do
     tag_name
     |> String.replace(" ", "-")

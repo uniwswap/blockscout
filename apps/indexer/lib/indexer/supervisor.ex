@@ -7,6 +7,7 @@ defmodule Indexer.Supervisor do
 
   alias Indexer.{
     Block,
+    ENSNameSanitizer,
     PendingOpsCleaner,
     PendingTransactionsSanitizer
   }
@@ -19,6 +20,7 @@ defmodule Indexer.Supervisor do
     CoinBalanceOnDemand,
     ContractCode,
     EmptyBlocksSanitizer,
+    ENSName,
     InternalTransaction,
     PendingTransaction,
     ReplacedTransaction,
@@ -126,12 +128,14 @@ defmodule Indexer.Supervisor do
         {TokenUpdater.Supervisor,
          [[json_rpc_named_arguments: json_rpc_named_arguments, memory_monitor: memory_monitor]]},
         {ReplacedTransaction.Supervisor, [[memory_monitor: memory_monitor]]},
+        {ENSName.Supervisor, [[json_rpc_named_arguments: json_rpc_named_arguments, memory_monitor: memory_monitor]]},
 
         # Out-of-band fetchers
         {CoinBalanceOnDemand.Supervisor, [json_rpc_named_arguments]},
         {EmptyBlocksSanitizer.Supervisor, [[json_rpc_named_arguments: json_rpc_named_arguments]]},
         {TokenTotalSupplyOnDemand.Supervisor, [json_rpc_named_arguments]},
         {PendingTransactionsSanitizer, [[json_rpc_named_arguments: json_rpc_named_arguments]]},
+        {ENSNameSanitizer, [[json_rpc_named_arguments: json_rpc_named_arguments]]},
 
         # Temporary workers
         {UncatalogedTokenTransfers.Supervisor, [[]]},

@@ -134,6 +134,13 @@ config :spandex_ecto, SpandexEcto.EctoLogger,
   tracer: Explorer.Tracer,
   otp_app: :explorer
 
+config :explorer, Explorer.ENS.NameRetriever,
+  enabled:
+    System.get_env("ENABLE_ENS") == "true" &&
+      (System.get_env("ENS_REGISTRY_ADDRESS") != nil || System.get_env("ENS_RESOLVER_ADDRESS") != nil),
+  registry_address: System.get_env("ENS_REGISTRY_ADDRESS"),
+  resolver_address: System.get_env("ENS_RESOLVER_ADDRESS")
+
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.
 import_config "#{config_env()}.exs"
