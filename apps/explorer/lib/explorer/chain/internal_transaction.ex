@@ -460,7 +460,6 @@ defmodule Explorer.Chain.InternalTransaction do
     changeset
     |> cast(attrs, @create_allowed_fields)
     |> validate_required(@create_required_fields)
-    |> validate_create_error_or_result()
     |> check_constraint(:init, message: ~S|can't be blank when type is 'create'|, name: :create_has_init)
     |> foreign_key_constraint(:created_contract_address_hash)
     |> foreign_key_constraint(:from_address_hash)
@@ -498,12 +497,6 @@ defmodule Explorer.Chain.InternalTransaction do
 
   @call_success_fields ~w(gas_used output)a
 
-  # Validates that :call `type` changeset either has an `error` or both `gas_used` and `output`
-  defp validate_call_error_or_result(changeset) do
-    case get_field(changeset, :error) do
-      _ -> validate_disallowed(changeset, @call_success_fields, message: "can't be present for failed call")
-    end
-  end
 
   @create_success_fields ~w(created_contract_code created_contract_address_hash gas_used)a
 
