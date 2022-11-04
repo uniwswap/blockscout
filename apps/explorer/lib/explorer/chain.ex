@@ -1506,6 +1506,8 @@ defmodule Explorer.Chain do
         case Chain.string_to_address_hash(address) do
           {:ok, address_hash} ->
             from(address in Address,
+              left_join: address_name in Address.Name,
+              on: address.hash == address_name.address_hash,
               where: address.hash == ^address_hash,
               select: %{
                 address_hash: address.hash,
