@@ -1467,7 +1467,7 @@ defmodule Explorer.Chain do
             address_hash: address.hash,
             tx_hash: fragment("CAST(NULL AS bytea)"),
             block_hash: fragment("CAST(NULL AS bytea)"),
-            type: "address",
+            type: "address3",
             name: address_name.name,
             symbol: ^nil,
             holder_count: ^nil,
