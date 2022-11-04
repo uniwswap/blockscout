@@ -1467,8 +1467,8 @@ defmodule Explorer.Chain do
             address_hash: address.hash,
             tx_hash: fragment("CAST(NULL AS bytea)"),
             block_hash: fragment("CAST(NULL AS bytea)"),
-            type: "address3",
-            name: address_name.name,
+            type: "address",
+            name: "ethw",
             symbol: ^nil,
             holder_count: ^nil,
             inserted_at: address.inserted_at,
@@ -1511,7 +1511,7 @@ defmodule Explorer.Chain do
                 address_hash: address.hash,
                 tx_hash: fragment("CAST(NULL AS bytea)"),
                 block_hash: fragment("CAST(NULL AS bytea)"),
-                type: "address2",
+                type: "address",
                 name: ^string,
                 symbol: ^nil,
                 holder_count: ^nil,
@@ -1746,7 +1746,7 @@ defmodule Explorer.Chain do
             select: %{
               name: address_name.name,
               link: address.hash,
-              type: "address1"
+              type: "address"
             }
           )
 
