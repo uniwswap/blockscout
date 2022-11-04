@@ -1506,15 +1506,13 @@ defmodule Explorer.Chain do
         case Chain.string_to_address_hash(address) do
           {:ok, address_hash} ->
             from(address in Address,
-              left_join: address_name in Address.Name,
-              on: address.hash == address_name.address_hash,
               where: address.hash == ^address_hash,
               select: %{
                 address_hash: address.hash,
                 tx_hash: fragment("CAST(NULL AS bytea)"),
                 block_hash: fragment("CAST(NULL AS bytea)"),
                 type: "address",
-                name: address_name.name,
+                name: ^string,
                 symbol: ^nil,
                 holder_count: ^nil,
                 inserted_at: address.inserted_at,
@@ -1748,7 +1746,7 @@ defmodule Explorer.Chain do
             select: %{
               name: address_name.name,
               link: address.hash,
-              type: "address"
+              type: "address1"
             }
           )
 
