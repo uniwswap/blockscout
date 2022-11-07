@@ -63,6 +63,9 @@
                       to: pending_transaction_path(@conn, :index)
                     ) %>
               <% end %>
+              <%= link(gettext("Verified contracts"),
+                    to: verified_contracts_path(@conn, :index),
+                    class: "dropdown-item #{tab_status("reorgs", @conn.request_path)}")%>
             </div>
           </li>
           <li class="nav-item dropdown">
