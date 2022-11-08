@@ -41,7 +41,7 @@
           <li><a href="https://uniwpunks.com/" rel="noreferrer" class="footer-link" target="_blank">UniWpunks</a></li>
           <li><a href="https://uniwgrant.com/" rel="noreferrer" class="footer-link" target="_blank">UniWgrants</a></li>
           <li><a href="https://bridge.uniwswap.com/" rel="noreferrer" class="footer-link" target="_blank">UniWbridge</a></li>
-          <!-- <%= render BlockScoutWeb.LayoutView, "_add_chain_to_mm.html" %> -->
+          <%= render BlockScoutWeb.LayoutView, "_add_chain_to_mm.html" %>
         </ul>
       </div> 
 
